@@ -30,12 +30,13 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStudentRequest $request)
-    {
-        Student::create($request->validated())
-        ;return redirect()->route('students.index');
-                //
-    }
+  public function store(StoreStudentRequest $request)
+{
+    Student::create($request->validated());
+    return redirect()->route('students.index')
+                     ->with('success', 'Student added successfully!');
+}
+    
 
     /**
      * Display the specified resource.
@@ -61,9 +62,10 @@ class StudentController extends Controller
     public function update(UpdateStudentRequest $request, Student $student)
     {
             $student->update($request->validated());
-        ;return redirect()->route('students.index');
-        //
+            return redirect()->route('students.index')
+                     ->with('success', 'Student updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -76,8 +78,10 @@ class StudentController extends Controller
     if($student){
         $student->delete();
     }
-    return redirect()->route('students.index');
+    return redirect()->route('students.index')
+                     ->with('success', 'Student deleted successfully!');
 }
+
 
 
 }

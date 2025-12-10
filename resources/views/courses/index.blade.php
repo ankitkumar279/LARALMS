@@ -1,26 +1,35 @@
 @extends('template')
-
 @section('content')
-<div class="row">
+
+<div class="row mb-3">
     <div class="col">
-        <h1 class="display-2">View all Courses</h1>
+        <h1 class="display-4">Courses</h1>
+    </div>
+    <div class="col text-end">
+        <a href="{{ route('courses.create') }}" class="btn btn-primary">Add New Course</a>
     </div>
 </div>
 
-<a href="{{ route('courses.create') }}">Add New Course</a>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 <div class="row">
-@foreach($courses as $course)
-<div class="col-md-4 mb-3">
-<div class="card" style="width: 18rem;">
-<div class="card-body">
-<h5 class="card-title">{{ $course->name }}</h5>
-<p class="card-text">{{ $course->code }}</p>
-<a href="{{ route('courses.show', $course->id) }}" class="card-link">View</a>
-<a href="{{ route('courses.edit', $course->id) }}" class="card-link">Edit</a>
+    @foreach($courses as $course)
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+               <h4 class="card-title fw-bold fs-5">{{ $course->name }}</h4>
+               <p class="card-text"><strong>Description:</strong> {{ $course->description ?? 'N/A' }}</p>
+
+                <a href="{{ route('courses.show', $course->id) }}" class="btn btn-sm btn-info me-2">View</a>
+                <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-sm btn-warning">Edit</a>
+            </div>
+        </div>
+    </div>
+    @endforeach
 </div>
-</div>
-</div>
-@endforeach
-</div>
+
 @endsection

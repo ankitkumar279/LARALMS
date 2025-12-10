@@ -3,25 +3,46 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>LaraLMS</title>
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+      rel="stylesheet">
   </head>
-  <body>
-       <nav>
-      <a href="{{ route('students.index') }}">Students</a> |
-      <a href="{{ route('courses.index') }}">Courses</a>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container">
+        <a class="navbar-brand" href="#">LaraLMS</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('students.index') }}">Students</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('courses.index') }}">Courses</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('professors.index') }}">Professors</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
     </nav>
-    <h1>Hello, world!</h1>
-   <div class = "container">
-    <div class = "row">
-        <div class = "col">
-            <h1>Laralms</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          @yield('content')
         </div>
-        <div class = "row">
-            <div class = "col">
-            @yield('content')
-        </div>
+      </div>
     </div>
-   </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
