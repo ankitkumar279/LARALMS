@@ -23,13 +23,20 @@
                     <div style="color: red;">{{ $message }}</div>
                 @enderror
             </div>
-
-            <div class="mb-3">
+            <lable>Selete Professor:</lable><br>
+            <select name="professor_id" id="professor_id" class="form-select mb-3">
+                <option  value="" selected disabled>Select Professor</option>
+                @foreach($professors as $professor)
+                    <option value="{{ $professor->id }}">{{ $professor->name }}</option>
+                @endforeach
+                </select>
+                <br>
+            <!-- <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" placeholder="Description">
                 @error('description')
                     <div style="color: red;">{{ $message }}</div>
-                @enderror
+                @enderror -->
             </div>
 
             <button type="submit" class="btn btn-success">Add Course</button>

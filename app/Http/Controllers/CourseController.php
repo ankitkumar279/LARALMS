@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Student;
+use App\Models\Professor;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 
@@ -16,7 +18,13 @@ class CourseController extends Controller
         return view('courses.index', [
             'courses' => Course::all()
         ]);
-        //
+    }
+
+    public function coursesbystudent($id)
+    {
+        // $student - student::find($id);
+        dd($student -> courses);
+
     }
 
     /**
@@ -24,8 +32,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
-        //
+        return view('courses.create')->with('professors', Professor::all());
     }
 
     /**
@@ -34,8 +41,8 @@ class CourseController extends Controller
     public function store(StoreCourseRequest $request)
     {
         Course::create($request->validated());
-        return redirect()->route('courses.index');
-        //
+        return redirect()->route('courses.index')
+                         ->with('success', 'Course added successfully!');
     }
 
     /**
@@ -44,7 +51,6 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         return view('courses.show', compact('course'));
-        //
     }
 
     /**
@@ -53,7 +59,6 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         return view('courses.edit', compact('course'));
-        //
     }
 
     /**
@@ -62,8 +67,8 @@ class CourseController extends Controller
     public function update(UpdateCourseRequest $request, Course $course)
     {
         $course->update($request->validated());
-        return redirect()->route('courses.index');
-        //
+        return redirect()->route('courses.index')
+                         ->with('success', 'Course updated successfully!');
     }
 
     /**
@@ -72,7 +77,7 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
-        return redirect()->route('courses.index');
-        //
+        return redirect()->route('courses.index')
+                         ->with('success', 'Course deleted successfully!');
     }
 }

@@ -19,3 +19,15 @@ Route::resource('courses', CourseController::class);
 
 Route::resource('professors', ProfessorController::class);
 
+Route::get(
+    'courses',
+    [CourseController::class, 'index']
+            ) ->name('courses.index');
+
+Route::get(
+    'coursesbystudent/{id}',
+    [CourseController::class, 'coursesbystudent']
+            ) ->name('courses.coursesbystudent');
+
+
+// require __DIR__ .'/setting.php';

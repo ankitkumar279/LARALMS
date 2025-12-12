@@ -9,6 +9,7 @@
             <p><strong>Name:</strong> {{ $course->name }}</p>
             <p><strong>Code:</strong> {{ $course->code }}</p>
             <p><strong>Description:</strong> {{ $course->description ?? 'N/A' }}</p>
+            
 
             <div class="mt-4">
                 <a href="{{ route('courses.index') }}" class="btn btn-secondary me-2">Back to all Courses</a>

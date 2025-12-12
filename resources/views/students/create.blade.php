@@ -37,6 +37,19 @@
                 @enderror
             </div>
 
+            @foreach($courses as $course)
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="courses[]" value="{{ $course->id }}" id="course{{ $course->id }}">
+        <label class="form-check-label" for="course{{ $course->id }}">
+            {{ $course->name }} ({{ $course->code }})
+        </label>
+    </div>
+@endforeach
+@error('courses')
+    <div style="color: red;">{{ $message }}</div>
+@enderror
+
+
             <button type="submit" class="btn btn-success">Add Student</button>
             <a href="{{ route('students.index') }}" class="btn btn-secondary ms-2">Back to Students</a>
         </form>

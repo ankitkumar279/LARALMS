@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use App\Models\Course;
+
 
 class StudentController extends Controller
 {
@@ -23,16 +25,17 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
-        //
+    return view('students.create')->with('courses', Course::all());
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
   public function store(StoreStudentRequest $request)
 {
-    Student::create($request->validated());
+    $student = Student::create($request->validated());
+    $student -> courses() -> attach($request -> courses);
     return redirect()->route('students.index')
                      ->with('success', 'Student added successfully!');
 }
@@ -62,6 +65,7 @@ class StudentController extends Controller
     public function update(UpdateStudentRequest $request, Student $student)
     {
             $student->update($request->validated());
+            $student->courses()-> attach($request->courses);
             return redirect()->route('students.index')
                      ->with('success', 'Student updated successfully!');
     }
